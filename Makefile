@@ -134,7 +134,7 @@ ${NAME1}: ${OBJS}
 	${AT} ${MAKE} -C ${LIB_ROOT}libft ${BLOCK}
 	${AT} ${MAKE} -C ${LIB_ROOT}${MLX} ${BLOCK}
 	${AT} ${CP_CMD} ${BLOCK}
-	${AT} ${CC} ${CFLAGS} ${OFLAGS} ${INCS} ${OBJS} ${MLX_FLAGS} ${LIB_ROOT}libft/libft.a -o $@
+	${AT} ${CC} ${CFLAGS} ${OFLAGS} ${INCS} -I${LIB_ROOT}libft ${OBJS} ${MLX_FLAGS} ${LIB_ROOT}libft/libft.a -o $@
 	${AT}printf "${_SUCCESS} ${@F} created.\n"
 
 # **************************************************************************** #
