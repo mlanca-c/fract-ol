@@ -18,7 +18,14 @@
  
 # Compiling
  
- ```
+ ```./fractol <fractal> [x] [y] [-p <precision>] [-c <color>] ```
+  
+  The ```<>``` are mandatory and the ```[]``` are optional
+ 
+ **example:**
+ ```Shell
+ ./fractol Mandelbrot -p 255 -c 0x0000ff
+ ./fractol Julia 1 0 -c 0x00ff0000
  ```
 
 # Intro
