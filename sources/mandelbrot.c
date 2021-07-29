@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 18:12:35 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/07/29 16:15:15 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/07/29 16:56:22 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ void	mandelbrot_set(t_data *data)
 			formula.z_imaginary = 0;
 			it = get_iterations(data, &formula);
 			if (it < data->precision)
-				my_mlx_pixel_put(data->img, x, y, create_trgb(0, 2.5 * it + 50,
-					2.5 * it, 0.3 * (it + 2)));
+				my_mlx_pixel_put(data->img, x, y, (0x000000 + (it * 10)));
 			y++;
 		}
 		x++;
