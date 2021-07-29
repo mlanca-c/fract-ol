@@ -13,7 +13,7 @@ PROJECT := fract-ol
 # Project Variables
 # **************************************************************************** #
 
-NAME1 := fract-ol
+NAME1 := fractol
 
 NAMES := ${NAME1}
 
@@ -89,6 +89,7 @@ SRCS = $(foreach dir,${SRC_DIRS},$(wildcard ${dir}*.c))
 OBJS = $(subst ${SRC_ROOT},${OBJ_ROOT},${SRCS:.c=.o})
 
 INCS := ${addprefix -I,${INC_DIRS}}
+INCS += -I${LIB_ROOT}libft
 
 # **************************************************************************** #
 # VPATHS
@@ -104,10 +105,10 @@ vpath %.c ${SRC_DIRS}
 
 ifeq ($(shell uname), Linux)
 	MLX = minilibx_linux
-	MLX_FLAGS = -lbsd -L${LIB_ROOT}${MLX} -lmlx -lXext -lX11 -lm -DOS=2
+	MLX_FLAGS = -lbsd -L${LIB_ROOT}${MLX} -lmlx -lXext -lX11 -lm
 else ifeq ($(shell uname), Darwin)
 	MLX = minilibx_mms
-	MLX_FLAGS = -I${LIB_ROOT}${MLX} -L${LIB_ROOT}${MLX} -lmlx -DOS=1
+	MLX_FLAGS = -I${LIB_ROOT}${MLX} -L${LIB_ROOT}${MLX} -lmlx
 	CP_CMD = cp ${LIB_ROOT}${MLX}/libmlx.dylib ./
 endif
 
@@ -134,7 +135,7 @@ ${NAME1}: ${OBJS}
 	${AT} ${MAKE} -C ${LIB_ROOT}libft ${BLOCK}
 	${AT} ${MAKE} -C ${LIB_ROOT}${MLX} ${BLOCK}
 	${AT} ${CP_CMD} ${BLOCK}
-	${AT} ${CC} ${CFLAGS} ${OFLAGS} ${INCS} -I${LIB_ROOT}libft ${OBJS} ${MLX_FLAGS} ${LIB_ROOT}libft/libft.a -o $@
+	${AT} ${CC} ${CFLAGS} ${OFLAGS} ${INCS}  ${OBJS} ${MLX_FLAGS} ${LIB_ROOT}libft/libft.a -o $@
 	${AT}printf "${_SUCCESS} ${@F} created.\n"
 
 # **************************************************************************** #
