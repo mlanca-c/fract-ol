@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 17:31:45 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/07/29 15:58:41 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/07/30 13:17:43 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,38 @@ typedef struct s_formula
 }	t_formula;
 
 /*
+ * This struct represents the input the program receives from the user -
+ * command line arguments.
+ * 	char	*fractal	- fractal the user wants to see. It can either be
+ * 						the Mandelbrot or the Julia Set.
+ * 	int		c_real		- this integer only contains values in case its the
+ * 						Julia set.
+ * 	int		c_imaginary	- this integer only contains values in case its the
+ * 						Julia set.
+ * 	int		precision	- This is the number of iterations the fractal has.
+ * 						In case this number isn't specified, the default is 255.
+ * 	int		color		- This is the base color of the fractal. In case this
+ * 						number isn't specified, the default is 0x00FF0000.
+*/
+typedef struct s_input
+{
+	char	*fractal;
+	int		c_real;
+	int		c_imaginary;
+	int		precision;
+	int		color;
+}	t_input;
+
+/*
 */
 typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
-	int			precision;
-	char		*fractal;
 	t_img		*img;
 	int			max_x;
 	int			max_y;
+	t_input		*input;
 }	t_data;
 
 /*
