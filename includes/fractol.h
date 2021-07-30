@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 17:31:45 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/07/30 16:57:18 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/07/30 17:04:08 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,6 @@ int		create_trgb(int transparency, int red, int green, int blue);
 ** zoom.c Functions
 */
 void	zoom_in(t_data *data);
-void	zoom_out();
+void	zoom_out(t_data *data);
 
 #endif

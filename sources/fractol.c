@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 13:10:57 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/07/30 16:47:16 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/07/30 17:05:32 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	main(int argc, char **argv)
 	data.mlx = mlx_init();
 	data.max_x = 1920;
 	data.max_y = 1080;
-	data.zoom = 1.0;
+	data.zoom = 0.5;
 	data.win = mlx_new_window(data.mlx, data.max_x, data.max_y, argv[1]);
 	img.img = mlx_new_image(data.mlx, data.max_x, data.max_y);
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_len, &img.endian);
