@@ -24,10 +24,23 @@
  
  **example:**
  ```Shell
- ./fractol Mandelbrot -p 255 -c 0x0000ff
- ./fractol Julia 1 0 -c 0x00ff0000
+ ./fractol Mandelbrot -p 255 -c 2
+ ./fractol Julia 1 0 -c 5
  ```
+```
+COLOR OPTIONS:
+	1: black and white
+	2: red
+	3: green
+	4: blue
+	5: mix
+	other No: trippy
+ (If not given any color, default is trippy)
 
+PRECISION OPTIONS:
+ (If not given any precision, default is at 85)
+```
+ 
 # Intro
 
  > [subject](subject.pdf)
