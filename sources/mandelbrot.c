@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 15:07:12 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/07/30 16:46:23 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/07/30 18:10:47 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,21 @@
 */
 int	get_color(int it, int color)
 {
-	double	i;
+	static double	mix = 19;
 
-	i = 0.4;
 	if (color == 1)
-		i = 0.2;
-	if (color == 2)
-		i = 5;
-	return (create_trgb(0, i * (it + 1), (i * 2) * (it + 2), (i * 3) * (it + 3)));
+		color = create_trgb(0, 20.5 * it, 20.5 * it, 20.5 * it);
+	else if (color == 2)
+		color = create_trgb(0, 255, 20.5 * it, 0);
+	else if (color == 3)
+		color = create_trgb(0, 0, 20.5 * it, 0);
+	else if (color == 4)
+		color = create_trgb(0, 0, 0, 20.5 * it);
+	else if (color == 5)
+		color = mix * it * 100000;
+	else
+		color = create_trgb(0, 40.5 * it, 20.5 * it, 255);
+	return (color);
 }
 
 /*

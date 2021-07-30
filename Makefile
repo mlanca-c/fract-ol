@@ -139,7 +139,8 @@ ${NAME1}: ${OBJS}
 	${AT}printf "${_SUCCESS} ${@F} created.\n\n\n" ${BLOCK}
 	${AT}printf "${GREEN}HOW TO COMPILE:\n" ${BLOCK}
 	${AT}printf "\t[./fractol <fractal> [x] [y] [-p <precision>] [-c <color>]\n" ${BLOCK}
-	${AT}printf "\nCOLOR OPTIONS:\n\t1: black and white\n\t2: red\n\t3: green\n\t4: blue\n" ${BLOCK}
+	${AT}printf "\nCOLOR OPTIONS:\n\t1: black and white\n\t2: red\n\t3: green\n\t4: blue\n\t5: mix" ${BLOCK}
+	${AT}printf "\n\t If not given any color, default is any other number.\n" ${BLOCK}
 	${AT}printf "\nPRECISION OPTIONS:\n\t If not given any precision, default is at 85.\n${RESET}" ${BLOCK}
 
 # **************************************************************************** #

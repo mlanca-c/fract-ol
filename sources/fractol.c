@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 13:10:57 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/07/30 17:05:32 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/07/30 18:15:44 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_input	*init_input(char **argv, int argc, t_input *input)
 
 	i = get_input_fractal(argv, argc, input);
 	input->precision = 255;
-	input->color = 0x0000FF00;
+	input->color = 17;
 	while (i < argc)
 	{
 		if (!ft_strcmp(argv[i], "-p") && argc > i + 1
