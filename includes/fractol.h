@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 17:31:45 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/07/30 13:17:43 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/07/30 16:57:18 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,14 @@ typedef struct s_data
 	t_img		*img;
 	int			max_x;
 	int			max_y;
+	double		zoom;
 	t_input		*input;
 }	t_data;
+
+/*
+ * fractol.c Functions
+*/
+void	get_fractal(t_data *data);
 
 /*
 ** hooks.c Functions
@@ -88,12 +94,23 @@ int		key_hook(int keycode, t_data *data);
 /*
 ** mandelbrot.c Functions
 */
-void	mandelbrot_set(t_data *data);
+void	mandelbrot_set(t_data *data, double zoom);
+
+/*
+** julia.c Functions
+*/
+void	julia_set(t_data *data);
 
 /*
 ** utils.c Functions
 */
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int		create_trgb(int transparency, int red, int green, int blue);
+
+/*
+** zoom.c Functions
+*/
+void	zoom_in(t_data *data);
+void	zoom_out();
 
 #endif
