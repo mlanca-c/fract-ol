@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 13:10:57 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/07/30 18:15:44 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/08/03 20:19:01 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ t_input	*init_input(char **argv, int argc, t_input *input)
 
 /*
 */
-void	get_fractal(t_data *data)
+void	get_fractal(t_data *data, int x, int y)
 {
 	if (!ft_strcmp(data->input->fractal, "Mandelbrot"))
-		mandelbrot_set(data, data->zoom);
-	//else if (!ft_strcmp(data->input->fractal, "Julia"))
-	//	julia_set();
+		mandelbrot_set(data, x, y);
+	else if (!ft_strcmp(data->input->fractal, "Julia"))
+		julia_set(data, x, y);
 }
 
 /*
@@ -100,9 +100,9 @@ int	main(int argc, char **argv)
 	img.img = mlx_new_image(data.mlx, data.max_x, data.max_y);
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_len, &img.endian);
 	data.img = &img;
-	get_fractal(&data);
+	get_fractal(&data, 0, 0);
 	mlx_key_hook(data.win, key_hook, &data);
-	mlx_mouse_hook(data.win, key_hook, &data);
+	mlx_mouse_hook(data.win, mouse_hook, &data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img->img, 0, 0);
 	mlx_loop(data.mlx);
 	return (0);

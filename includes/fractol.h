@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 17:31:45 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/07/30 17:04:08 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/09/17 12:13:44 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "mlx.h"
 # include "libft.h"
 # include <math.h>
-# include <stdio.h>
 
 # define ZOOM_IN_KEY 4
 # define ZOOM_OUT_KEY 5
@@ -84,22 +83,24 @@ typedef struct s_data
 /*
  * fractol.c Functions
 */
-void	get_fractal(t_data *data);
+void	get_fractal(t_data *data, int x, int y);
 
 /*
 ** hooks.c Functions
 */
 int		key_hook(int keycode, t_data *data);
+int		mouse_hook(int mouse_code, int x, int y, t_data *data);
 
 /*
 ** mandelbrot.c Functions
 */
-void	mandelbrot_set(t_data *data, double zoom);
+void	mandelbrot_set(t_data *data, int mouse_x, int mouse_y);
+int		get_color(int it, int color);
 
 /*
 ** julia.c Functions
 */
-void	julia_set(t_data *data);
+void	julia_set(t_data *data, int mouse_x, int mouse_y);
 
 /*
 ** utils.c Functions
@@ -110,7 +111,7 @@ int		create_trgb(int transparency, int red, int green, int blue);
 /*
 ** zoom.c Functions
 */
-void	zoom_in(t_data *data);
-void	zoom_out(t_data *data);
+void	zoom_in(t_data *data, int x, int y);
+void	zoom_out(t_data *data, int x, int y);
 
 #endif
