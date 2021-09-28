@@ -5,102 +5,63 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/29 13:10:57 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/08/03 20:19:01 by mlanca-c         ###   ########.fr       */
+/*   Created: 2021/08/04 11:52:18 by mlanca-c          #+#    #+#             */
+/*   Updated: 2021/08/05 14:24:38 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 /*
- * When called this function displays an error message and exits the program.
 */
-void	error_message(void)
+void	get_fractal(t_data *data)
 {
-	printf("fractol: invalid arguments.\n");
-	printf("correct format: ");
-	printf("[./fractol <fractal> [x] [y] [-p <precision>] [-c <color>]\n");
-	exit(1);
+	if (data->fractal[0] == 'M')
+		mandelbrot_set(data);
+	/*
+	else if (data->fractal[0] == 'J')
+		julia_set(data);
+	*/
 }
 
 /*
+** This function is the main function of the project.
+** The main() function will initialize all the MiniLibX functionalities needed
+** for the creation of an image and a window. It will also analyse the user's
+** input given in the form of command line arguments - such as the request of
+** the chosen fractal, its precision and color, for example.
+** Once the input and the MiniLibX is initialize the function will call the
+** get_fractal() function which will choose the correct function to generate the
+** correct fractal.
+**
+** @param	int		argc	- number of command line arguments.
+** @param	char	**argc	- command line arguments given by the user.
+**
+** @return
+** 	- The main() function will return 1 in case of error - if MiniLibX didn't
+** 	perform as intended or the user's input wasn't in the correct format - and
+** 	it will return 0 in case of success.
 */
-int	get_input_fractal(char **argv, int argc, t_input *input)
+int	main(int argc, char *argv[])
 {
-	if (!ft_strcmp(argv[1], "Mandelbrot"))
-	{
-		input->fractal = argv[1];
-		input->c_real = 0;
-		input->c_imaginary = 0;
-		return (2);
-	}
-	else if (!ft_strcmp(argv[1], "Julia") && argc > 3
-		&& ft_str_isnumeric(argv[2]) && ft_str_isnumeric(argv[3]))
-	{
-		input->fractal = argv[1];
-		input->c_real = ft_atoi(argv[2]);
-		input->c_imaginary = ft_atoi(argv[3]);
-		return (4);
-	}
-	else
-		error_message();
-	return (0);
-}
-
-/*
-*/
-t_input	*init_input(char **argv, int argc, t_input *input)
-{
-	int		i;
-
-	i = get_input_fractal(argv, argc, input);
-	input->precision = 255;
-	input->color = 17;
-	while (i < argc)
-	{
-		if (!ft_strcmp(argv[i], "-p") && argc > i + 1
-			&& ft_str_isnumeric(argv[++i]))
-			input->precision = ft_atoi(argv[i]);
-		else if (!ft_strcmp(argv[i], "-c") && argc > i + 1
-			&& ft_str_isnumeric(argv[++i]))
-			input->color = ft_atoi(argv[i]);
-		else
-			error_message();
-		i++;
-	}
-	return (input);
-}
-
-/*
-*/
-void	get_fractal(t_data *data, int x, int y)
-{
-	if (!ft_strcmp(data->input->fractal, "Mandelbrot"))
-		mandelbrot_set(data, x, y);
-	else if (!ft_strcmp(data->input->fractal, "Julia"))
-		julia_set(data, x, y);
-}
-
-/*
-*/
-int	main(int argc, char **argv)
-{
-	t_data		data;
-	t_input		input;
 	t_img		img;
+	t_data		data;
+	t_complex	move;
 
 	if (argc < 2)
 		error_message();
-	data.input = init_input(argv, argc, &input);
+	input_init(argc, argv, &data);
 	data.mlx = mlx_init();
-	data.max_x = 1920;
-	data.max_y = 1080;
-	data.zoom = 0.5;
-	data.win = mlx_new_window(data.mlx, data.max_x, data.max_y, argv[1]);
-	img.img = mlx_new_image(data.mlx, data.max_x, data.max_y);
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_len, &img.endian);
+	move.re = 0;
+	move.im = 0;
+	data.move = &move;
+	data.zoom = 1.0;
+	img.img = mlx_new_image(data.mlx, WIN_X, WIN_Y);
+	img.addr = mlx_get_data_addr(img.img, &(img.bpp),
+		&(img.line_len), &(img.endian));
 	data.img = &img;
-	get_fractal(&data, 0, 0);
+	data.win = mlx_new_window(data.mlx, WIN_X, WIN_Y, argv[1]);
+	get_fractal(&data);
 	mlx_key_hook(data.win, key_hook, &data);
 	mlx_mouse_hook(data.win, mouse_hook, &data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img->img, 0, 0);

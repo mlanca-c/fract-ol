@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/30 16:47:36 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/08/02 11:47:50 by mlanca-c         ###   ########.fr       */
+/*   Created: 2021/08/04 14:17:02 by mlanca-c          #+#    #+#             */
+/*   Updated: 2021/08/04 19:28:18 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,32 @@
 
 /*
 */
-void	zoom_in(t_data *data, int x, int y)
+void	zoom_in(t_data *data)
 {
-	t_img	new_img;
-	double	zoom;
+	t_img	img;
 
-	new_img.img = mlx_new_image(data->mlx, data->max_x, data->max_y);
-	new_img.addr =  mlx_get_data_addr(new_img.img, &new_img.bpp, &new_img.line_len,
-		&new_img.endian);
-	zoom = data->zoom * 1.1;
-	data->zoom = zoom;
-	data->img = &new_img;
-	get_fractal(data, x, y);
+	img.img = mlx_new_image(data->mlx, WIN_X, WIN_Y);
+	img.addr = mlx_get_data_addr(img.img, &(img.bpp),
+		&(img.line_len), &(img.endian));
+	data->img = &img;
+	data->zoom *= 1.7;
+	get_fractal(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	free(data->img->img);
 }
 
 /*
 */
-void	zoom_out(t_data *data, int x, int y)
+void	zoom_out(t_data *data)
 {
-	t_img	new_img;
-	double	zoom;
+	t_img	img;
 
-	new_img.img = mlx_new_image(data->mlx, data->max_x, data->max_y);
-	new_img.addr =  mlx_get_data_addr(new_img.img, &new_img.bpp, &new_img.line_len,
-		&new_img.endian);
-	zoom = data->zoom / 1.1;
-	data->zoom = zoom;
-	data->img = &new_img;
-	get_fractal(data, x, y);
+	img.img = mlx_new_image(data->mlx, WIN_X, WIN_Y);
+	img.addr = mlx_get_data_addr(img.img, &(img.bpp),
+		&(img.line_len), &(img.endian));
+	data->img = &img;
+	data->zoom /= 1.7;
+	get_fractal(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	free(data->img->img);
 }
