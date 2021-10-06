@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 14:27:48 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/08/05 15:57:37 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/09/30 11:00:33 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,22 @@ void	mandelbrot_set(t_data *data)
 	while (x < WIN_X)
 	{
 		y = 0;
+		c.re = (RES * (x - (WIN_X / 2)));
+		c.re /= WIN_X / (2.0 / data->zoom);
+		c.re += -0.775;
 		while (y < WIN_Y)
 		{
-			c.re = (RES * (x - (WIN_X / 2)));
-			c.re /= WIN_X / (2.0 / data->zoom);
-			c.re += -0.30;
 			c.im = y - (WIN_Y / 2);
 			c.im /= WIN_Y / (2.0 / data->zoom);
-			c.im += -0.64;
+			c.im += 0.177;
 			z.re = 0;
 			z.im = 0;
 			it = mandelbrot_iteration(&z, &c, data);
 			if (it < data->precision)
 				my_mlx_pixel_put(data->img, x, y,
 						get_color(it, data->color));
+			else
+				my_mlx_pixel_put(data->img, x, y, 0x000);
 			y++;
 		}
 		x++;
