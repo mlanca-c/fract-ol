@@ -5,60 +5,58 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/04 14:27:48 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/08/05 15:57:37 by mlanca-c         ###   ########.fr       */
+/*   Created: 2021/10/12 17:13:18 by mlanca-c          #+#    #+#             */
+/*   Updated: 2021/10/12 18:49:56 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	mandelbrot_iteration(t_complex *z, t_complex *c, t_data *data)
+int		mandelbrot_iterations(t_complex c, t_complex z, int precision)
 {
-	int		it;
 	double	temp;
+	int		it;
 
 	it = 0;
-	//while (z->re * z->re + z->im * z->im < 4 &&
-	while (pow(z->re, 2) + pow(z->im, 2) < 4 &&
-		it < data->precision)
+	while (pow(z.re, 2.0) + pow(z.im, 2.0) < 4.0 && it < precision)
 	{
-		temp = pow(z->re, 2) - pow(z->im, 2) + c->re;
-		//temp = z->re * z->re - z->im * z->im + c->re;
-		z->im = 2.0 * z->re * z->im + c->im;
-		z->re = temp;
+		temp = (pow(z.re, 2.0) - pow(z.im, 2.0)) + c.re;
+		z.im = (2.0 * z.re * z.im) + c.im;
+		z.re = temp;
 		it++;
 	}
 	return (it);
 }
 
-void	mandelbrot_set(t_data *data)
+void	mandelbrot_set(t_fractal *fractal)
 {
-	t_complex	z;
 	t_complex	c;
-	double		x;
-	double		y;
+	t_complex	z;
+	t_complex	pixel;
+	t_complex	limit;
 	int			it;
 
-	x = 0;
-	while (x < WIN_X)
+	pixel.re = 0;
+	limit.re = WIDTH / 2.0;
+	limit.im = HEIGHT / 2.0;
+	while (pixel.re < WIDTH)
 	{
-		y = 0;
-		while (y < WIN_Y)
+		pixel.im = 0;
+		c.re = (pixel.re - limit.re) / fractal->zoom;
+		while (pixel.im < HEIGHT)
 		{
-			c.re = (RES * (x - (WIN_X / 2)));
-			c.re /= WIN_X / (2.0 / data->zoom);
-			c.re += -0.30;
-			c.im = y - (WIN_Y / 2);
-			c.im /= WIN_Y / (2.0 / data->zoom);
-			c.im += -0.64;
-			z.re = 0;
-			z.im = 0;
-			it = mandelbrot_iteration(&z, &c, data);
-			if (it < data->precision)
-				my_mlx_pixel_put(data->img, x, y,
-						get_color(it, data->color));
-			y++;
+			c.im = (limit.im - pixel.im) / fractal->zoom;
+			z.re = 0.0;
+			z.im = 0.0;
+			it = mandelbrot_iterations(c, z, fractal->precision);
+			if (it < fractal->precision)
+				my_mlx_pixel_put(fractal->data->img, pixel.re, pixel.im,
+					get_color(it, fractal->color));
+			else
+				my_mlx_pixel_put(fractal->data->img, pixel.re, pixel.im,
+					create_trgb(0, 0, 0, 0));
+			pixel.im++;
 		}
-		x++;
+		pixel.re++;
 	}
 }

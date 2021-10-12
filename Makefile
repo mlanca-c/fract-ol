@@ -105,10 +105,10 @@ vpath %.c ${SRC_DIRS}
 
 ifeq ($(shell uname), Linux)
 	MLX = minilibx_linux
-	MLX_FLAGS = -lbsd -L${LIB_ROOT}${MLX} -lmlx -lXext -lX11 -lm
+	MLX_FLAGS = -lbsd -L${LIB_ROOT}${MLX} -lmlx -lXext -lX11 -lm -DOS=1
 else ifeq ($(shell uname), Darwin)
 	MLX = minilibx_mms
-	MLX_FLAGS = -I${LIB_ROOT}${MLX} -L${LIB_ROOT}${MLX} -lmlx
+	MLX_FLAGS = -I${LIB_ROOT}${MLX} -L${LIB_ROOT}${MLX} -lmlx -DOS=2
 	CP_CMD = cp ${LIB_ROOT}${MLX}/libmlx.dylib ./
 endif
 
@@ -156,6 +156,8 @@ clean:
 	${AT}mkdir -p ${OBJ_ROOT} ${BLOCK}
 	${AT}find ${OBJ_ROOT} -type f -delete ${BLOCK}
 	${AT} ${MAKE} fclean -C ${LIB_ROOT}libft ${BLOCK}
+	${AT} ${MAKE} clean -C ${LIB_ROOT}minilibx_mms ${BLOCK}
+	${AT} rm -f libmlx.dylib ${BLOCK}
 	${AT}printf "$(_INFO) cleaned ${OBJ_ROOT} folder.\n" ${BLOCK}
 
 .PHONY: fclean

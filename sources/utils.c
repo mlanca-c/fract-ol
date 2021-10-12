@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol_utils.c                                    :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/04 14:29:42 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/08/04 16:10:17 by mlanca-c         ###   ########.fr       */
+/*   Created: 2021/10/12 17:04:43 by mlanca-c          #+#    #+#             */
+/*   Updated: 2021/10/12 17:28:36 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ int	get_color(int it, int color)
 		return (create_trgb(0, 0, 20.5 * it, 0));
 	else if (color == BLUE)
 		return (create_trgb(0, 0, 0, 20.5 * it));
-	else if (color == LIGHT_BLUE)
-		return (19 * it * 100000);
 	else if (color == VIOLET)
 		return (create_trgb(0, 40.5 * it, 20.5 * it, 255));
 	return (create_trgb(0, 9 * (1 - it) * pow(it, 3) * 255,
