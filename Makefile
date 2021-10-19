@@ -105,10 +105,12 @@ vpath %.c ${SRC_DIRS}
 
 ifeq ($(shell uname), Linux)
 	MLX = minilibx_linux
-	MLX_FLAGS = -lbsd -L${LIB_ROOT}${MLX} -lmlx -lXext -lX11 -lm -DOS=1
+	MLX_FLAGS = -lbsd -L${LIB_ROOT}${MLX} -lmlx -lXext -lX11 -lm
+	CFLAGS += -DOS=1
 else ifeq ($(shell uname), Darwin)
 	MLX = minilibx_mms
-	MLX_FLAGS = -I${LIB_ROOT}${MLX} -L${LIB_ROOT}${MLX} -lmlx -DOS=2
+	MLX_FLAGS = -I${LIB_ROOT}${MLX} -L${LIB_ROOT}${MLX} -lmlx
+	CFLAGS += -DOS=2
 	CP_CMD = cp ${LIB_ROOT}${MLX}/libmlx.dylib ./
 endif
 
