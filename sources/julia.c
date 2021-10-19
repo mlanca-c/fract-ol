@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 15:19:41 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/10/19 21:48:13 by mlanca-c         ###   ########.fr       */
+/*   Created: 2021/10/19 15:19:56 by mlanca-c          #+#    #+#             */
+/*   Updated: 2021/10/19 22:06:29 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,30 @@
 
 /*
 */
-t_complex	get_complex(int x, int y, t_view *view)
+t_complex	get_complex_julia(int x, int y, t_view *view)
 {
 	t_complex	number;
 
 	number.re = ((double)x - view->x_max) / view->zoom;
 	number.im = ((double)y - view->y_max) / view->zoom;
-	//number.re = ((double)x / WIDTH) * (view->x_max - view->x_min) * view->zoom + view->x_min;
-	//number.im = ((double)y / HEIGHT) * (view->y_max - view->y_min) * view->zoom + view->y_min;
 	return (number);
 }
 
 /*
 */
-t_pixel	mandelbrot_set(int x, int y, t_view *view)
+t_pixel	julia_set(int x, int y, t_view *view)
 {
 	t_pixel		pixel;
 	t_complex	z;
-	t_complex	c;
 	t_complex	temp;
 	double		i;
 
 	i = 0;
-	z = get_complex(x, y, view);
-	c = z;
+	z = get_complex_julia(x, y, view);
 	while (z.re * z.re + z.im * z.im < (1 << 8) && i < view->precision)
 	{
-		temp.re = z.re * z.re - z.im * z.im + c.re;
-		temp.im = z.re * z.im * 2 + c.im;
+		temp.re = z.re * z.re - z.im * z.im + view->mouse.re;
+		temp.im = z.re * z.im * 2 + view->mouse.im;
 		if (z.re == temp.re && z.im == temp.im)
 		{
 			i = view->precision;

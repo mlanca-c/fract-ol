@@ -5,30 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 17:04:43 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/10/12 17:28:36 by mlanca-c         ###   ########.fr       */
+/*   Created: 2021/10/19 13:39:43 by mlanca-c          #+#    #+#             */
+/*   Updated: 2021/10/19 18:19:07 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 /*
+ * This function initiates a loop with MiniLibX that lets the window open while
+ * the program is running. It also manages the MiniLibX hooks.
+ *
+ * @param	t_ctrl	*control	- this struct 
 */
-int	get_color(int it, int color)
+void	init_loop(t_ctrl *control)
 {
-	if (color == BLACK)
-		return (create_trgb(0, 20.5 * it, 20.5 * it, 20.5 * it));
-	else if (color == RED)
-		return (create_trgb(0, 255, 20.5 * it, 0));
-	else if (color == GREEN)
-		return (create_trgb(0, 0, 20.5 * it, 0));
-	else if (color == BLUE)
-		return (create_trgb(0, 0, 0, 20.5 * it));
-	else if (color == VIOLET)
-		return (create_trgb(0, 40.5 * it, 20.5 * it, 255));
-	return (create_trgb(0, 9 * (1 - it) * pow(it, 3) * 255,
-			15 * pow((1 - it), 2) * pow(it, 2) * 255,
-			8.5 * pow((1 - it), 3) * it * 255));
+	mlx_loop(control->data->mlx);
 }
 
 /*
@@ -70,3 +62,5 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	dest = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(unsigned int *)dest = color;
 }
+
+void	my_mlx_text_put();
