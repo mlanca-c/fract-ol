@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:37:46 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/10/19 19:24:57 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/10/20 00:32:28 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@
 */
 void	exit_program(t_ctrl *control)
 {
-	mlx_destroy_image(control->data->mlx, control->img->img);
 	mlx_destroy_window(control->data->mlx, control->data->win);
+	mlx_destroy_image(control->data->mlx, control->img->img);
 	free(control->img);
 	free(control->data);
 	free(control->fractal);
 	free(control->pixels);
 	free(control);
+	printf("SUCCESS\n");
 	exit(EXIT_SUCCESS);
 }
 

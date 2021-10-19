@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 18:30:43 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/10/19 22:03:17 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/10/20 00:29:09 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	init_view(t_ctrl *control)
 	control->view.precision = PRECISION;
 	control->width = WIDTH;
 	control->height = HEIGHT;
-	if (control->view.mouse.re == 0 && control->view.mouse.im == 0)
-		control->view.mouse = (t_complex){-0.835f, -0.232f};
-	printf("mouse: (%f, %f)\n", control->view.mouse.re, control->view.mouse.im);
+	control->view.mouse = (t_complex){-0.835f, -0.232f};
 	control->view.color = 0;
 }

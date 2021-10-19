@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 14:45:17 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/10/20 00:47:21 by mlanca-c         ###   ########.fr       */
+/*   Created: 2021/10/20 00:29:47 by mlanca-c          #+#    #+#             */
+/*   Updated: 2021/10/20 00:47:01 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-/*
-*/
-int	main(int argc, char **argv)
+int		key_hook(int keycode, t_ctrl *control)
 {
-	t_fractal	*fractal;
-	t_ctrl		*control;
-
-	if (argc < 2)
-		error_message(INVALID_ARGS);
-	fractal = init_fractal(argv[1]);
-	control = init_control(fractal->name);
-	control->fractal = fractal;
-	init_view(control);
+	printf("keycode: %X\n", keycode);
+	if (keycode == KEY_ESCAPE)
+		exit_program(control);
+	else if (keycode == KEY_PLUS)
+		control->view.precision *= 2.0;
+	else if (keycode == KEY_MINUS)
+		control->view.precision /= 2.0;
+	else if (keycode == KEY_C)
+		control->view.color = (control->view.color + 1) % 4;
+	else if (keycode == KEY_SPACE)
+		control->view.zoom = ZOOM_FACTOR;
 	fractal_render(control);
-	init_loop(control);
-	return (0);
+	return (keycode);
 }

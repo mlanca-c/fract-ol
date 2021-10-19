@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 10:29:28 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/10/19 22:51:48 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/10/20 00:48:52 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@
 #  define KEY_PLUS		0x0045
 #  define KEY_MINUS		0x004e
 #  define KEY_C			0x0008
-#  define KEY_H			0x
-#  define KEY_J			0x
+#  define KEY_H			0x0004
+#  define KEY_J			0x0026
 # endif
 
 /*
@@ -243,14 +243,15 @@ t_pixel		mandelbrot_set(int x, int y, t_view *view);
 t_pixel		julia_set(int x, int y, t_view *view);
 
 /*
-** minilibx_utils.c Functions
+** command_utils.c Functions
 */
 void		help_message(void);
 void		error_message(char *str);
 void		init_loop(t_ctrl *control);
+void		exit_program(t_ctrl *control);
 
 /*
-** command_utils.c Functions
+** minilibx_utils.c Functions
 */
 int			create_trgb(int transparency, int red, int green, int blue);
 void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
@@ -265,5 +266,12 @@ void		*ft_malloc(int size);
 ** color.c Functions
 */
 int			get_color(int iteration, int precision, int color);
+
+/*
+** mouse_hook.c Functions
+*/
+int			mouse_hook(int mousecode, int x, int y, t_ctrl *control);
+
+int		key_hook(int keycode, t_ctrl *control);
 
 #endif
