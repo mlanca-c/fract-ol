@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:37:46 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/10/20 00:32:28 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/10/20 00:59:03 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	exit_program(t_ctrl *control)
 */
 void	help_message(void)
 {
-	printf("execution format: ./fractal <fractal_name> [x] [y]\n");
+	printf("execution format: ./fractal <fractal>\n");
 	printf("COLOR_RED List of available fractals:\n\t* Mandelbrot\n\t* Julia\n");
 	exit(EXIT_SUCCESS);
 }

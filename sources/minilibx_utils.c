@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 13:39:43 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/10/20 00:36:41 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/10/20 01:06:19 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 */
 void	init_loop(t_ctrl *control)
 {
-	mlx_key_hook(control->data->win, key_hook, &control);
-	mlx_mouse_hook(control->data->win, mouse_hook, control);
+	mlx_hook(control->data->win, 2, 1L << 0, key_hook, control);
+	mlx_hook(control->data->win, 4, (1L << 2), mouse_hook, control);
+	//mlx_key_hook(control->data->win, key_hook, &control);
+	//mlx_mouse_hook(control->data->win, mouse_hook, control);
 	mlx_loop(control->data->mlx);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 00:29:47 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/10/20 00:47:01 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/10/20 00:58:42 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int		key_hook(int keycode, t_ctrl *control)
 {
-	printf("keycode: %X\n", keycode);
 	if (keycode == KEY_ESCAPE)
 		exit_program(control);
 	else if (keycode == KEY_PLUS)

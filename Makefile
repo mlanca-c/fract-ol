@@ -141,9 +141,8 @@ ${NAME1}: ${OBJS}
 	${AT} clear ${BLOCK}
 	${AT}printf "${_SUCCESS} ${@F} created.\n\n\n" ${BLOCK}
 	${AT}printf "${GREEN}HOW TO COMPILE:\n" ${BLOCK}
-	${AT}printf "\t[./fractol <fractal> [x] [y]\n" ${BLOCK}
-	${AT}printf "\nCOLOR OPTIONS:\n\t1: black and white\n\t2: red\n\t3: green\n\t4: blue\n\t5: mix" ${BLOCK}
-	${AT}printf "\nPRECISION OPTIONS:\n\t If not given any precision, default is at 5.\n${RESET}" ${BLOCK}
+	${AT}printf "\t[./fractol <fractal>\n" ${BLOCK}
+	${AT}printf "For instrutctions on how to use the interface, press the \"H\" Key.\n" ${BLOCK}
 
 # **************************************************************************** #
 # Clean Targets
