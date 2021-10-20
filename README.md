@@ -47,5 +47,6 @@ PRECISION OPTIONS:
 
 # Useful Links
 
+ * [ pbielinux/Fract-ol](https://github.com/pbielinux/Fract-ol)
  * [Wiki](https://github.com/mlanca-c/fract-ol/wiki)
 
