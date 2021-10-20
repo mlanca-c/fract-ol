@@ -19,8 +19,6 @@
 # Compiling
  
  ```./fractol <fractal>```
-  
-  The ```<>``` are mandatory and the ```[]``` are optional
  
  **possibilities:**
  ```Shell
