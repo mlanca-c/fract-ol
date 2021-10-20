@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:19:41 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/10/19 21:48:13 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/10/20 14:50:29 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ t_complex	get_complex(int x, int y, t_view *view)
 
 	number.re = ((double)x - view->x_max) / view->zoom;
 	number.im = ((double)y - view->y_max) / view->zoom;
-	//number.re = ((double)x / WIDTH) * (view->x_max - view->x_min) * view->zoom + view->x_min;
-	//number.im = ((double)y / HEIGHT) * (view->y_max - view->y_min) * view->zoom + view->y_min;
 	return (number);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 10:29:28 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/10/20 00:48:52 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/10/20 14:49:01 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@
 #  define KEY_SPACE		0x0020	// Restore image to the initial zoom
 #  define KEY_PLUS		0xffab	// Increase precision
 #  define KEY_MINUS		0xffad	// Decrease precision
-#  define KEY_C			0x		// Change the color
-#  define KEY_H			0x		// Get help menu
-#  define KEY_J			0x		// Get different Julia sets
+#  define KEY_C			0x0063		// Change the color
+#  define KEY_H			0x0068		// Get help menu
+#  define KEY_J			0x006a		// Get different Julia sets
 # elif OS == 2
 #  define KEY_LEFT		0x007d
 #  define KEY_RIGHT		0x007c
@@ -80,11 +80,10 @@
 /*
 ** Possible Colors:
 */
-# define VIOLET			0
-# define BLACK			1
-# define RED			2
-# define GREEN			3
-# define BLUE			4
+# define BLACK			0
+# define RED			1
+# define GREEN			2
+# define BLUE			3
 
 /*
 ** This struct will represent a complex number - z = x + yi.

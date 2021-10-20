@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 19:25:02 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/10/19 20:28:22 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/10/20 14:48:34 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ int	get_color(int iteration, int precision, int color)
 		return (create_trgb(0, 0, 20.5 * iteration, 0));
 	else if (color == BLUE)
 		return (create_trgb(0, 0, 0, 20.5 * iteration));
-	else if (color == VIOLET)
-		return (create_trgb(0, 40.5 * iteration, 20.5 * iteration, 255));
-	return (create_trgb(0, 9 * (1 - iteration) * pow(iteration, 3) * 255,
-			15 * pow((1 - iteration), 2) * pow(iteration, 2) * 255,
-			8.5 * pow((1 - iteration), 3) * iteration * 255));
+	else if (color == BLACK)
+		return (create_trgb(0, 20.5 * iteration, 20.5 * iteration, 20.5 * iteration));
+	return (create_trgb(0, 40.5 * iteration, 20.5 * iteration, 255));
 }
