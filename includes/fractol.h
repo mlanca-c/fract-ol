@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 10:29:28 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/10/20 00:48:52 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/10/26 13:55:09 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@
 #  define KEY_SPACE		0x0020	// Restore image to the initial zoom
 #  define KEY_PLUS		0xffab	// Increase precision
 #  define KEY_MINUS		0xffad	// Decrease precision
-#  define KEY_C			0x		// Change the color
-#  define KEY_H			0x		// Get help menu
-#  define KEY_J			0x		// Get different Julia sets
+#  define KEY_C			0x0068	// Change the color
+#  define KEY_H			0x0063	// Get help menu
+#  define KEY_J			0x006a	// Get different Julia sets
 # elif OS == 2
 #  define KEY_LEFT		0x007d
 #  define KEY_RIGHT		0x007c
@@ -80,11 +80,10 @@
 /*
 ** Possible Colors:
 */
-# define VIOLET			0
-# define BLACK			1
-# define RED			2
-# define GREEN			3
-# define BLUE			4
+# define BLACK			0
+# define RED			1
+# define GREEN			2
+# define BLUE			3
 
 /*
 ** This struct will represent a complex number - z = x + yi.
@@ -93,7 +92,7 @@
 **
 ** @param	double	im	- represents the imaginary part of a complex number.
 */
-typedef struct	s_complex
+typedef struct s_complex
 {
 	double	re;
 	double	im;
@@ -109,7 +108,7 @@ typedef struct	s_complex
 ** @param	int			iteration	- number of times the pixel was iterated by
 ** 									the fractal formula.
 */
-typedef struct	s_pixel
+typedef struct s_pixel
 {
 	t_complex	coord;
 	int			iteration;
@@ -130,7 +129,7 @@ typedef struct	s_pixel
 ** 						needs to be stored in little endian (endian = 0) or big
 ** 						endian (endian = 1).
 */
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*img;
 	char	*addr;
@@ -151,7 +150,7 @@ typedef struct	s_img
 **	t_img	*img -	pointer of struct s_img (t_img). This pointer contains
 **					another struct with all the image related variables.
 */
-typedef struct	s_data
+typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
@@ -169,7 +168,7 @@ typedef struct	s_data
 ** @param	int		precision	- precision of the fractal.
 ** @param	t_complex	mouse	- coordinate of the mouse.
 */
-typedef struct	s_view
+typedef struct s_view
 {
 	double		x_max;
 	double		x_min;
@@ -183,7 +182,7 @@ typedef struct	s_view
 
 /*
 */
-typedef	t_pixel	(* t_fn_fractal)(int x, int y, t_view *view);
+typedef t_pixel (*	t_fn_fractal)(int x, int y, t_view *view);
 
 /*
 ** This struct stores all necessary information regarding the user's input
@@ -194,7 +193,7 @@ typedef	t_pixel	(* t_fn_fractal)(int x, int y, t_view *view);
 **						- img->img.
 **	t_fn_fractal	fn_fractal	- function pointer to the fractal_function.
 */
-typedef struct	s_fractal
+typedef struct s_fractal
 {
 	char			*name;
 	t_fn_fractal	fn_fractal;
@@ -209,7 +208,7 @@ typedef struct	s_fractal
 ** @param	t_pixel	*pixels	- struct s_pixel array where each pixel represents a
 ** 							has its coordinates and its iteration.
 */
-typedef struct	s_control
+typedef struct s_control
 {
 	t_img		*img;
 	t_data		*data;
@@ -224,13 +223,22 @@ typedef struct	s_control
 ** fractol.c Functions
 */
 t_fractal	*init_fractal(char *str);
-void		fractal_render(t_ctrl *control);
-void		pixels_to_image(t_ctrl *control);
+
+/*
+** control.c Functions
+*/
+t_ctrl		*init_control(char *name);
 
 /*
 ** view.c Functions
 */
 void		init_view(t_ctrl *control);
+
+/*
+** render.c Function
+*/
+void		fractal_render(t_ctrl *control);
+void		pixels_to_image(t_ctrl *control);
 
 /*
 ** mandelbrot.c Functions
@@ -247,20 +255,14 @@ t_pixel		julia_set(int x, int y, t_view *view);
 */
 void		help_message(void);
 void		error_message(char *str);
-void		init_loop(t_ctrl *control);
-void		exit_program(t_ctrl *control);
+int			exit_program(t_ctrl *control);
 
 /*
 ** minilibx_utils.c Functions
 */
+void		init_loop(t_ctrl *control);
 int			create_trgb(int transparency, int red, int green, int blue);
 void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
-
-/*
-** control.c Functions
-*/
-t_ctrl		*init_control(char *name);
-void		*ft_malloc(int size);
 
 /*
 ** color.c Functions
@@ -268,10 +270,18 @@ void		*ft_malloc(int size);
 int			get_color(int iteration, int precision, int color);
 
 /*
+** complex.c Function
+*/
+t_complex	get_complex(int x, int y, t_view *view);
+
+/*
 ** mouse_hook.c Functions
 */
 int			mouse_hook(int mousecode, int x, int y, t_ctrl *control);
 
-int		key_hook(int keycode, t_ctrl *control);
+/*
+** key_hook.c Functions
+*/
+int			key_hook(int keycode, t_ctrl *control);
 
 #endif

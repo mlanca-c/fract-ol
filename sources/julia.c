@@ -6,24 +6,27 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:19:56 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/10/19 22:06:29 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/10/26 13:49:51 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 /*
-*/
-t_complex	get_complex_julia(int x, int y, t_view *view)
-{
-	t_complex	number;
-
-	number.re = ((double)x - view->x_max) / view->zoom;
-	number.im = ((double)y - view->y_max) / view->zoom;
-	return (number);
-}
-
-/*
+** This function calculates a pixel for the Julia set using the formula
+** Z(n + 1) = Z(n) ^ 2 + C.
+**
+** @param	int		x		- x coordinate of the pixel that is going to be
+** 							calculated.
+** @param	int		y		- y coordinate of the pixel that is going to be
+** 							calculated.
+** @param	t_view	*view	- struct that contains all necessary values the
+** 							program will need about the image and the limits of
+** 							the fractal.
+**
+** @return
+** 		- The julia_set() function returns a struct s_pixel - t_pixel - variable
+** 		that represents a pixel on the screen and its iteration value.
 */
 t_pixel	julia_set(int x, int y, t_view *view)
 {
@@ -33,7 +36,7 @@ t_pixel	julia_set(int x, int y, t_view *view)
 	double		i;
 
 	i = 0;
-	z = get_complex_julia(x, y, view);
+	z = get_complex(x, y, view);
 	while (z.re * z.re + z.im * z.im < (1 << 8) && i < view->precision)
 	{
 		temp.re = z.re * z.re - z.im * z.im + view->mouse.re;

@@ -6,22 +6,23 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 13:39:43 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/10/20 01:06:19 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/10/26 12:19:10 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 /*
- * This function initiates a loop with MiniLibX that lets the window open while
- * the program is running. It also manages the MiniLibX hooks.
- *
- * @param	t_ctrl	*control	- this struct 
+** This function initiates a loop with MiniLibX that lets the window open while
+** the program is running. It also manages the MiniLibX hooks.
+**
+** @param	t_ctrl	*control	- this struct 
 */
 void	init_loop(t_ctrl *control)
 {
 	mlx_hook(control->data->win, 2, 1L << 0, key_hook, control);
 	mlx_hook(control->data->win, 4, (1L << 2), mouse_hook, control);
+	mlx_hook(control->data->win, 17, 0, exit_program, control);
 	//mlx_key_hook(control->data->win, key_hook, &control);
 	//mlx_mouse_hook(control->data->win, mouse_hook, control);
 	mlx_loop(control->data->mlx);
@@ -66,5 +67,3 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	dest = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(unsigned int *)dest = color;
 }
-
-void	my_mlx_text_put();

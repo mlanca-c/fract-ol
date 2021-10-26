@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   messages.h                                         :+:      :+:    :+:   */
+/*   get_complex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 15:14:59 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/10/26 12:42:49 by mlanca-c         ###   ########.fr       */
+/*   Created: 2021/10/26 12:23:01 by mlanca-c          #+#    #+#             */
+/*   Updated: 2021/10/26 12:23:12 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MESSAGES_H
-# define MESSAGES_H
+#include "fractol.h"
 
-# define WRONG_FRACTAL	"wrong fractal name.\n"
-# define INVALID_ARGS	"invalid arguments.\n"
-# define MLX_ERROR		"couldn't connect with MiniLibX.\n"
+/*
+*/
+t_complex	get_complex(int x, int y, t_view *view)
+{
+	t_complex	number;
 
-#endif
+	number.re = ((double)x - view->x_max) / view->zoom;
+	number.im = ((double)y - view->y_max) / view->zoom;
+	return (number);
+}

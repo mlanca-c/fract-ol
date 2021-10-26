@@ -6,13 +6,26 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 14:45:17 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/10/20 01:01:55 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/10/26 12:08:07 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 /*
+** This is the main function of the project. The main() function takes an
+** argument from the user - in this case the fractal the user wants to see - and
+** validates that argument.
+** The function focuses on initiating variables:
+** 		init_fractal()	- to initiate the t_fractal variable;
+** 		init_control()	- to initiate the t_ctrl variable;
+** 		init_view()		- to initiate the t_view variable;
+** 		init_loop()		- to initiate a loop with the MiniLibX.
+** After all is initiate the fractal is rendered, and the fractal_render()
+** function is called.
+**
+** @param	int		argc	- argument counter.
+** @param	char	*argv	- command line argument.
 */
 int	main(int argc, char **argv)
 {

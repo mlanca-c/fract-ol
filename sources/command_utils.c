@@ -6,7 +6,7 @@
 /*   By: mlanca-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:37:46 by mlanca-c          #+#    #+#             */
-/*   Updated: 2021/10/20 00:59:03 by mlanca-c         ###   ########.fr       */
+/*   Updated: 2021/10/26 12:38:19 by mlanca-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** @param	t_ctrl	*control	- main struct of the program. Some of the
 ** 								variables it contains need to be freed.
 */
-void	exit_program(t_ctrl *control)
+int	exit_program(t_ctrl *control)
 {
 	mlx_destroy_window(control->data->mlx, control->data->win);
 	mlx_destroy_image(control->data->mlx, control->img->img);
@@ -29,7 +29,6 @@ void	exit_program(t_ctrl *control)
 	free(control->fractal);
 	free(control->pixels);
 	free(control);
-	printf("SUCCESS\n");
 	exit(EXIT_SUCCESS);
 }
 
@@ -62,4 +61,3 @@ void	error_message(char *message)
 	printf("\tadditional info: ./fractol --help\n");
 	exit(EXIT_FAILURE);
 }
-

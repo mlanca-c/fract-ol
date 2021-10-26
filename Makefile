@@ -68,7 +68,6 @@ BIN_ROOT := ./
 # Content Folders
 # **************************************************************************** #
 
-
 SRC_DIRS_LIST := ${SRC_ROOT}
 SRC_DIRS_LIST := $(foreach dl,${SRC_DIRS_LIST},$(subst :,:${SRC_ROOT},${dl}))
 
