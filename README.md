@@ -18,14 +18,12 @@
  
 # Compiling
  
- ```./fractol <fractal> [x] [y] [-p <precision>] [-c <color>] ```
-  
-  The ```<>``` are mandatory and the ```[]``` are optional
+ ```./fractol <fractal>```
  
- **example:**
+ **possibilities:**
  ```Shell
- ./fractol Mandelbrot -p 255 -c 2
- ./fractol Julia 1 0 -c 5
+ ./fractol Mandelbrot
+ ./fractol Julia
  ```
 ```
 COLOR OPTIONS:
@@ -33,12 +31,6 @@ COLOR OPTIONS:
 	2: red
 	3: green
 	4: blue
-	5: mix
-	other No: trippy
- (If not given any color, default is trippy)
-
-PRECISION OPTIONS:
- (If not given any precision, default is at 85)
 ```
  
 # Intro
@@ -47,5 +39,6 @@ PRECISION OPTIONS:
 
 # Useful Links
 
+ * [ pbielinux/Fract-ol](https://github.com/pbielinux/Fract-ol)
  * [Wiki](https://github.com/mlanca-c/fract-ol/wiki)
 
